@@ -19,15 +19,28 @@ public class Jeroo extends JerooBase {
      *     ^W            W
      */
     public void followWallRight() {
-
+      if (!isWater(AHEAD)){
+        hop();
+        if (!isWater(RIGHT)){
+          turn(RIGHT);
+          hop();
+        }
+      }
+      if (isWater(AHEAD)){
+        turn(LEFT);
+      }
     }
-
     
     /**
      * The Jeroo should navigate the maze until it finds a flower.
      * HINT:  Use followWallRight
      */
     public void mazeWalker() {
+      while (!isFlower(AHEAD)){
+        followWallRight();
+      }
+      hop();
+      pick();
         
     }
     
